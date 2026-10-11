@@ -102,7 +102,7 @@ function renderHero() {
   hero.append(h("img", { class: "hero__image", src: headerImage, alt: headerAlt || `${name}のヘッダー画像` }));
 }
 
-// 画面の右上についてくるカザグルマ。スクロールした量に合わせて回ります。
+// 画面の右上についてくるカザグルマ。スクロールした量に合わせて回り、触ってもくるっと回ります。
 // 設定は site-config.js の followPinwheel です(書いていなければ、初期設定で動きます)。
 function setupFollowPinwheel() {
   const element = document.getElementById("follow-pinwheel");
@@ -125,6 +125,15 @@ function setupFollowPinwheel() {
     element.classList.toggle("is-visible", scrolled >= showAfter);
     if (!reduceMotion) spinner.style.transform = `rotate(${scrolled * 0.5}deg)`;
   };
+
+  // 触ったとき(クリック・タップ)にも、くるっと回ります
+  if (!reduceMotion) {
+    let extraTurn = 0;
+    element.addEventListener("click", () => {
+      extraTurn += 720;
+      element.style.transform = `rotate(${extraTurn}deg)`;
+    });
+  }
 
   window.addEventListener(
     "scroll",

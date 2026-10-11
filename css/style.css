@@ -19,7 +19,7 @@
 
   /* 幅・余白 */
   --page-width: 720px;
-  --hero-width: 960px;           /* ヘッダー画像の最大の幅 */
+  --hero-width: 100%;            /* ヘッダー画像の最大の幅。100% で横幅いっぱい、960px などにすると中央に寄せます */
   --gap: 16px;
 }
 
@@ -89,7 +89,6 @@ a { color: inherit; }
   height: auto;
   aspect-ratio: auto 3 / 1;   /* 読み込み前の高さの目安。読み込み後は画像本来の比率になります */
   margin: 0 auto;
-  border-radius: 0 0 24px 24px;
 }
 
 /* 画面の右上についてくるカザグルマ。少しスクロールすると、ふわっと出てきます */
@@ -104,11 +103,17 @@ a { color: inherit; }
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.88);   /* 文字と重なっても見やすいように、うっすら白い丸を敷いています */
   opacity: 0;
-  pointer-events: none;   /* 下にあるリンクを押せるようにします */
-  transition: opacity 0.3s;
+  pointer-events: none;   /* 見えていないあいだは、下にあるリンクを押せるようにします */
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.3s, transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);   /* transform は、触ったときに回る動き */
 }
 
-.follow-pinwheel.is-visible { opacity: 1; }
+.follow-pinwheel.is-visible {
+  opacity: 1;
+  pointer-events: auto;   /* 見えているあいだは、触って回せます */
+}
 
 .follow-pinwheel img {
   width: 100%;
