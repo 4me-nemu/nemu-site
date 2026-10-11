@@ -23,14 +23,13 @@
 </head>
 <body>
 
-  <!-- ヘッダー(飾り)。カザグルマをクリックすると、くるっと回ります -->
-  <header class="hero" id="hero">
-    <div class="hero__inner">
-      <div class="hero__spin" id="pinwheel">
-        <img class="hero__pinwheel" src="assets/pinwheel.svg" alt="" width="240" height="240">
-      </div>
-    </div>
-  </header>
+  <!-- ヘッダー。画像は site-config.js の headerImage で指定します(画像が無いときは水色の背景になります) -->
+  <header class="hero" id="hero"></header>
+
+  <!-- 画面の右上についてくるカザグルマ(スクロールに合わせて回ります) -->
+  <div class="follow-pinwheel" id="follow-pinwheel" aria-hidden="true">
+    <img src="assets/pinwheel-follow.svg" alt="" width="72" height="72">
+  </div>
 
   <main class="page">
     <section class="profile" id="profile" aria-label="自己紹介"></section>

@@ -92,24 +92,50 @@ function applyTheme() {
 }
 
 function renderHero() {
-  const { headerImage } = SITE.profile;
+  const { headerImage, headerAlt, name } = SITE.profile;
   if (!headerImage) return;
+
+  // 画像は <img> で入れるので、画面の幅に合わせて全体が見えます(切り取られません)
   const hero = document.getElementById("hero");
-  hero.classList.add("hero--custom");
-  hero.style.backgroundImage = `url("${headerImage}")`;
+  hero.classList.add("hero--image");
+  document.body.classList.add("has-header-image");
+  hero.append(h("img", { class: "hero__image", src: headerImage, alt: headerAlt || `${name}のヘッダー画像` }));
 }
 
-// カザグルマをクリック(タップ)すると、くるっと回ります
-function setupPinwheel() {
-  const spinner = document.getElementById("pinwheel");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!spinner || reduceMotion) return;
+// 画面の右上についてくるカザグルマ。スクロールした量に合わせて回ります。
+// 設定は site-config.js の followPinwheel です(書いていなければ、初期設定で動きます)。
+function setupFollowPinwheel() {
+  const element = document.getElementById("follow-pinwheel");
+  if (!element) return;
 
-  let angle = 0;
-  spinner.addEventListener("click", () => {
-    angle += 720;
-    spinner.style.transform = `rotate(${angle}deg)`;
-  });
+  const { enabled = true, showAfter = 140 } = SITE.followPinwheel || {};
+  if (!enabled) {
+    element.remove();
+    return;
+  }
+
+  const spinner = element.firstElementChild;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let waiting = false;
+
+  const update = () => {
+    waiting = false;
+    const scrolled = window.scrollY;
+    // ヘッダー画像の中のカザグルマと重ならないよう、少しスクロールしてから出します
+    element.classList.toggle("is-visible", scrolled >= showAfter);
+    if (!reduceMotion) spinner.style.transform = `rotate(${scrolled * 0.5}deg)`;
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (waiting) return;
+      waiting = true;
+      requestAnimationFrame(update);
+    },
+    { passive: true }
+  );
+  update();
 }
 
 /* ---------- 自己紹介 ---------- */
@@ -318,7 +344,7 @@ function renderFooter() {
 
 applyTheme();
 renderHero();
-setupPinwheel();
+setupFollowPinwheel();
 renderProfile();
 renderFeatured();
 renderMedia();

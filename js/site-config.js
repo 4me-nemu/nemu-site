@@ -16,6 +16,12 @@ const SITE = {
   options: {
     // true: リンクを新しいタブで開く / false: 同じタブで開く
     openInNewTab: true,
+    },
+
+      // 画面の右上についてくるカザグルマ(スクロールに合わせて回ります)
+  followPinwheel: {
+    enabled: true,   // false にすると表示されません
+    showAfter: 140,  // 何px スクロールしたら出すか。0 なら最初から表示
   },
 
   /* ---------- 自己紹介 ---------- */
@@ -28,8 +34,9 @@ const SITE = {
       "ここは、活動している場所をまとめたページです。気になるところから見てみてください。",
     ],
     icon: "assets/NEMU_icon.png",                // ★アイコン画像(仮)。assets に画像を入れて、ここを書き換え
-    headerImage: "assets/NEMU_header.png",                        // ヘッダー画像。空なら水色の背景とカザグルマが出ます
-    social: [                               // 名前の下に出る小さなボタン。不要なら [] にします
+    headerImage: "assets/NEMU_header.png",    // ヘッダー画像。空なら水色の背景とカザグルマが出ます
+    headerAlt: "雨宮 眠夢のヘッダー画像",      // ヘッダー画像の説明文(読み上げ用)
+    social: [                                // 名前の下に出る小さなボタン。不要なら [] にします
       { label: "Twitterをフォロー", url: "https://twitter.com/_nemurunemunemu" },  // ★自分のURLに
     ],
   },

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-104 -104 208 208">
+  <!-- 画面右上についてくるカザグルマ。青いヘッダーの上でも、明るい背景の上でも見えるように、濃い紺の縁取りをつけています -->
+  <defs>
+    <g id="blade" stroke="#1B2B3A" stroke-width="4" stroke-linejoin="round">
+      <path d="M0 0 L0 -92 L64 -64 Z"/>
+      <path d="M0 0 L64 -64 L42 -6 Z" fill="#4DB6EA"/>
+    </g>
+  </defs>
+  <g fill="#FFFFFF"><use href="#blade"/></g>
+  <g fill="#85D6FF" transform="rotate(90)"><use href="#blade"/></g>
+  <g fill="#FFFFFF" transform="rotate(180)"><use href="#blade"/></g>
+  <g fill="#85D6FF" transform="rotate(270)"><use href="#blade"/></g>
+  <circle r="10" fill="#1B2B3A"/>
+  <circle r="4" fill="#FFFFFF"/>
+</svg>
