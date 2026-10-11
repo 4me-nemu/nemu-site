@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200">
+  <defs>
+    <g id="blade">
+      <path d="M0 0 L0 -92 L64 -64 Z"/>
+      <path d="M0 0 L64 -64 L42 -6 Z" fill="#3FA9E0"/>
+    </g>
+  </defs>
+  <rect x="-100" y="-100" width="200" height="200" rx="44" fill="#85D6FF"/>
+  <g transform="scale(0.8)">
+    <g fill="#FFFFFF"><use href="#blade"/></g>
+    <g fill="#E3F6FF" transform="rotate(90)"><use href="#blade"/></g>
+    <g fill="#FFFFFF" transform="rotate(180)"><use href="#blade"/></g>
+    <g fill="#E3F6FF" transform="rotate(270)"><use href="#blade"/></g>
+    <circle r="9" fill="#1B2B3A"/>
+    <circle r="3.5" fill="#FFFFFF"/>
+  </g>
+</svg>
